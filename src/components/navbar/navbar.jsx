@@ -1,10 +1,7 @@
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../assets/logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import './navbar.css';
@@ -38,7 +35,7 @@ export default function Navbar({ user, onLogout }) {
       } 
       {user === "guest" &&
         <Toolbar>
-          <img src={logo} width="40" height="40" />
+          <img src={logo} width="40" height="40" alt="..."/>
           <Typography variant="h6" className={classes.title}>
             Paly Robotics
           </Typography>
@@ -47,7 +44,7 @@ export default function Navbar({ user, onLogout }) {
       }
       {user === "member" && 
         <Toolbar>
-        <img src={logo} width="40" height="40" />
+        <img src={logo} width="40" height="40" alt="..."/>
         <Typography variant="h6" className={classes.title}>
           Paly Robotics
         </Typography>
