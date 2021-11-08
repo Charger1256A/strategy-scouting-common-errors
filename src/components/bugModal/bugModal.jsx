@@ -1,40 +1,37 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { open, close } from "../../features/modal/modalSlice.js";
+import { closeBug } from "../../features/modal/bugModal.js";
 import 'antd/dist/antd.css';
 import { Input, Modal } from "antd";
+import './bugModal.css';
 
-export default function CustomModal() {
+export default function BugModal() {
   const [title, setTitle] = useState("");
+  const [error, setError] = useState("");
 
-  const modal = useSelector((state) => state.modal.value);
+  const bugModal = useSelector((state) => state.bugModal.value);
   const dispatch = useDispatch();
-
-
-  const showModal = () => {
-      dispatch(open());
-  };
   
   const handleOk = () => {
-      dispatch(close());
+      dispatch(closeBug());
   };
   
   const handleCancel = () => {
-      dispatch(close());
+      dispatch(closeBug());
   };
   
   return (
       <div>
           <Modal
           title="Report a Bug"
-          visible={modal}
+          visible={bugModal}
           onOk={handleOk}
           onCancel={handleCancel}
           okText="Add"
           width={1000}
           >
-            <Input addonBefore="Title" onChange={(e) => setTitle(e.target.value)}/>
-
+            <Input className="input" addonBefore="Title" onChange={(e) => setTitle(e.target.value)}/>
+            <Input className="input" addonBefore="Error Message" onChange={(e) => setError(e.target.value)}/>
           </Modal>
       </div>
 );

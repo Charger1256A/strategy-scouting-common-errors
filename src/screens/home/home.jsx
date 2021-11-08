@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import CustomModal from '../../components/customModal/customModal';
+import BugModal from '../../components/bugModal/bugModal';
+import ProjectModal from '../../components/projectModal/projectModal';
 
 export default function Home() {
     
     return (
         <div>
-            <CustomModal />
+            <ProjectModal />
+            <BugModal />
         </div>
   );
 }

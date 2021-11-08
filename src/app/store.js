@@ -1,8 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import modalReducer from '../features/modal/modalSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import {combineReducers} from 'redux';
+import bugModal from '../features/modal/bugModal';
+import projectModal from '../features/modal/projectModal';
 
 export default configureStore({
   reducer: {
-    modal: modalReducer,
+    bugModal: bugModal,
+    projectModal: projectModal,
   },
 })
