@@ -54,6 +54,8 @@ export default function BugModal() {
     setUrl("");
     setSelectedProject("Choose a project...");
     setSolutionDesc("Description of solution...");
+    setType("Choose type of bug...");
+    setCustomType("");
 
     dispatch(closeBug());
   };
