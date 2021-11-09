@@ -12,14 +12,14 @@ const { Option } = Select;
 export default function ProjectModal() {
   const [name, setName] = useState("");
   const [git, setGit] = useState("");
-  const [season, setSeason] = useState("Choose an option...");
+  const [season, setSeason] = useState("Choose an season...");
 
   const projectModal = useSelector((state) => state.projectModal.value);
   const dispatch = useDispatch();
   const projects = db.ref("/projects");
   
   const handleAdd = () => {
-    if (name === "" || git === "" || season === "Choose an option...") {
+    if (name === "" || git === "" || season === "Choose an season...") {
         alert("All fields required");
         return;
     }
@@ -56,7 +56,7 @@ export default function ProjectModal() {
           >
             <Input className="input" addonBefore="Project Name" onChange={(e) => setName(e.target.value)} value={name}/>
             <Input className="input" addonBefore="Github Url" onChange={(e) => setGit(e.target.value)} value={git} />
-            <Select defaultValue="Choose an option..." style={{ width: 200 }} onChange={(updateSeason)} value={season}>
+            <Select style={{ width: 200 }} onChange={(updateSeason)} value={season}>
                 <Option value="Off Season">Off Season</Option>
                 <Option value="Build Season">Build Season</Option>
                 <Option value="Personal">Personal</Option>
