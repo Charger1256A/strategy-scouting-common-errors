@@ -16,6 +16,8 @@ export default function BugModal() {
   const [localProjects, setLocalProjects] = useState({});
   const [selectedProject, setSelectedProject] = useState("Choose a project...");
   const [solutionDesc, setSolutionDesc] = useState("Description of solution...");
+  const [type, setType] = useState("Choose type of bug...")
+  const [customType, setCustomType] = useState("");
 
   const bugModal = useSelector((state) => state.bugModal.value);
   const dispatch = useDispatch();
@@ -33,14 +35,26 @@ export default function BugModal() {
         alert("Missing data for some fields");
         return;
     }
+
+    if (type === "Choose type of bug..." || (!type && !customType)) {
+        alert("Missing data for some fields");
+        return
+    }
     db.ref(`/projects/${selectedProject}/bugs`).push({
         title: title,
         error_message: error,
         solution_url: url,
         solution_description: solutionDesc,
+        type_of_error: type ? type : customType
         // project_id: selectedProject,
 
     })
+    setTitle("");
+    setError("");
+    setUrl("");
+    setSelectedProject("Choose a project...");
+    setSolutionDesc("Description of solution...");
+
     dispatch(closeBug());
   };
 
@@ -51,6 +65,10 @@ export default function BugModal() {
   const updateProject = (newProject) => {
     setSelectedProject(newProject);
     // console.log(newProject);
+  }
+
+  const updateType = (newType) => {
+      setType(newType);
   }
 
   return (
@@ -82,6 +100,20 @@ export default function BugModal() {
           value={url}
         />
         <TextArea className="input" rows={4} value={solutionDesc} onChange={(e) => setSolutionDesc(e.target.value)}/>
+        <Select className="input" style={{ width: 200 }} onChange={updateType} value={type}>
+            <Option value="react native">react native</Option>
+            <Option value="react">react</Option>
+            <Option value="xcode">xcode</Option>
+            <Option value="">other</Option>
+        </Select>
+        {(!type) &&
+            <Input
+            className="input"
+            addonBefore="type"
+            onChange={(e) => setCustomType(e.target.value)}
+            value={customType}
+          />
+        }
         <Select style={{ width: 200 }} onChange={(updateProject)} value={selectedProject}>
             {Object.keys(localProjects).map((keyName, i) => (
                 <Option value={keyName}>{localProjects[keyName].name}</Option>
