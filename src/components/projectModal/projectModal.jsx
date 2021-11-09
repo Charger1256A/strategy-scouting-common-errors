@@ -4,7 +4,7 @@ import { closeProject } from "../../features/modal/projectModal.js";
 import 'antd/dist/antd.css';
 import { Input, Modal, Select } from "antd";
 import './projectModal.css';
-import { auth, db } from  '../../firebase';
+import { db } from  '../../firebase';
 
 // const db = firebase.ref("/projects");
 const { Option } = Select;
@@ -13,10 +13,10 @@ export default function ProjectModal() {
   const [name, setName] = useState("");
   const [git, setGit] = useState("");
   const [season, setSeason] = useState("Choose an option...");
-  const projects = db.ref("/projects")
 
   const projectModal = useSelector((state) => state.projectModal.value);
   const dispatch = useDispatch();
+  const projects = db.ref("/projects");
   
   const handleAdd = () => {
     if (name === "" || git === "" || season === "Choose an option...") {
