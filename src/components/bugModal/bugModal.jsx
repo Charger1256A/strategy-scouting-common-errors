@@ -20,7 +20,6 @@ export default function BugModal() {
   const bugModal = useSelector((state) => state.bugModal.value);
   const dispatch = useDispatch();
   const projects = db.ref("/projects");
-  const bugs = db.ref("/bugs");
 
   useEffect(() => {
     projects.on("value", function (snapshot) {
@@ -34,12 +33,12 @@ export default function BugModal() {
         alert("Missing data for some fields");
         return;
     }
-    bugs.push({
+    db.ref(`/projects/${selectedProject}/bugs`).push({
         title: title,
         error_message: error,
         solution_url: url,
         solution_description: solutionDesc,
-        project_id: selectedProject,
+        // project_id: selectedProject,
 
     })
     dispatch(closeBug());
