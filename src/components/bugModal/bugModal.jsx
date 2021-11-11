@@ -5,6 +5,8 @@ import "antd/dist/antd.css";
 import { Input, Modal, Select } from "antd";
 import "./bugModal.css";
 import { db } from "../../firebase";
+import firebase from "firebase";
+
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -40,12 +42,14 @@ export default function BugModal() {
         alert("Missing data for some fields");
         return
     }
+    var d = new Date();
     db.ref(`/projects/${selectedProject}/bugs`).push({
         title: title,
         error_message: error,
         solution_url: url,
         solution_description: solutionDesc,
-        type_of_error: type ? type : customType
+        type_of_error: type ? type : customType,
+        date: d.toDateString(),
         // project_id: selectedProject,
 
     })

@@ -20,19 +20,25 @@ export default function Home() {
     }, [])
 
     const display = () => {
+        console.log(localProjects);
+        if (!localProjects) {
+            return;
+        }
         const rows = [];
         let cols = [];
         var i = 0;
-        Object.keys(localProjects).map((project, key) => (
+        Object.keys(localProjects).map((project, key) => {
+            if (localProjects[project].bugs) {
             Object.keys(localProjects[project].bugs).map((bug, key) => {
-                cols.push(<BugCard className="bug-card" title={localProjects[project].bugs[bug].title}/>)
+                cols.push(<BugCard className="bug-card" title={localProjects[project].bugs[bug].title} type={localProjects[project].bugs[bug].type_of_error} date={localProjects[project].bugs[bug].date}/>)
                 if ((i + 1) % 4 === 0) {
                     rows.push(cols);
                     cols = [];
                 }
                 i++
             })
-        ))
+        }
+        })
         if (cols && cols.length > 0) {
             rows.push(cols);
         }
