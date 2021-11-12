@@ -5,8 +5,6 @@ import "antd/dist/antd.css";
 import { Input, Modal, Select } from "antd";
 import "./bugModal.css";
 import { db } from "../../firebase";
-import firebase from "firebase";
-
 
 const { TextArea } = Input;
 const { Option } = Select;

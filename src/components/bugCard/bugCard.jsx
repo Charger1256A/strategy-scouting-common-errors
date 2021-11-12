@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { openBugData } from "../../features/modal/bugDataModal.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Card } from 'antd';
 import './bugCard.css';
 import react from '../../assets/types/react.png';
@@ -18,7 +18,6 @@ const { Meta } = Card;
 export default function BugCard({ data }) {
     const [thumbnail, setThumbnail] = useState();
 
-    const bugDataModal = useSelector((state) => state.bugDataModal.value);
     const dispatch = useDispatch();
 
     useEffect(() => {

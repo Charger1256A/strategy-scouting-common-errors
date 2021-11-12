@@ -1,17 +1,13 @@
-import { useState, useEffect } from 'react';
-import { Modal, Row, Typography } from 'antd';
-import { closeBugData, getData } from "../../features/modal/bugDataModal.js";
+import { Modal } from 'antd';
+import { closeBugData } from "../../features/modal/bugDataModal.js";
 import { useSelector, useDispatch } from "react-redux";
-import store from '../../app/store';
 import './bugDataModal.css';
-
-const { Text, Link } = Typography;
 
 export default function BugDataModal() {
     const modalVisible = useSelector((state) => state.bugDataModal.value);
     const data = useSelector((state) => state.bugDataModal.data);
     const dispatch = useDispatch();
-    console.log(data);
+    // console.log(data);
 
     return (
     <div>

@@ -8,7 +8,6 @@ import { Row, Col } from 'antd';
 import './home.css';
 
 export default function Home() {
-    const [bugs, setBugs] = useState();
     const [localProjects, setLocalProjects] = useState({});
 
     const projects = db.ref("/projects");
@@ -16,7 +15,7 @@ export default function Home() {
     useEffect(() => {
         projects.on("value", function (snapshot) {
             setLocalProjects(snapshot.val());
-            console.log(snapshot.val());
+            // console.log(snapshot.val());
           });
     }, [])
 
@@ -30,7 +29,7 @@ export default function Home() {
         var i = 0;
         var p;
         Object.keys(localProjects).map((project, key) => {
-            console.log(localProjects[project].name);
+            // console.log(localProjects[project].name);
             if (localProjects[project].bugs) {
             Object.keys(localProjects[project].bugs).map((bug, key) => {
                 // console.log(localProjects[project].bugs[bug]);
