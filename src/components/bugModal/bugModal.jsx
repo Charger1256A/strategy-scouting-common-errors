@@ -34,7 +34,7 @@ export default function BugModal() {
   }, []);
 
   const handleOk = () => {
-    if (!title || !error || solutionDesc === "Description of solution..." || !solutionDesc || selectedProject === "Choose a project...") {
+    if (!title || !error || solutionDesc === "Description of solution..." || !solutionDesc || selectedProject === "Choose a project..." || !name) {
         alert("Missing data for some fields");
         return;
     }
@@ -127,7 +127,8 @@ export default function BugModal() {
           />
         }
         <Select className="input" style={{ width: 200 }} onChange={(updateProject)} value={selectedProject}>
-            {Object.keys(localProjects).map((keyName, i) => (
+            {localProjects &&
+            Object.keys(localProjects).map((keyName, i) => (
                 <Option value={keyName}>{localProjects[keyName].name}</Option>
             ))}
         </Select>

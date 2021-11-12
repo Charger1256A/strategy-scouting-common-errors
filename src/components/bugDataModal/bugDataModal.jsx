@@ -16,7 +16,7 @@ export default function BugDataModal() {
     return (
     <div>
             <Modal
-            title={data.title}
+            title={`${data.title} (${data.name})`}
             centered
             visible={modalVisible}
             onOk={() => dispatch(closeBugData())}
@@ -25,12 +25,17 @@ export default function BugDataModal() {
             width={1000}
         >
         <p><b>Error Message: </b>{data.error_message}</p>
-        <p><b>Solution: </b>{data.solution_description}</p>
-        <Row>
+        <div className="link">
+        {data.solution_url ? ( <a href={data.solution_url} target="_blank"><b>Solution: </b></a>) : ( <p><b>Solution: </b></p>)}
+        <p>&nbsp;{data.solution_description}</p>
+        </div>
+        
         {data.project &&
-            <p><b>Project: </b>{data.project.name}</p> 
+        <div className="link">
+                <a href={data.project.github_url} target="_blank"><b>Project: </b></a>
+                <p>&nbsp;{data.project.name}</p>
+            </div>
         }
-        </Row>
         </Modal>
     </div>
     )

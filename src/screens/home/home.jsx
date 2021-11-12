@@ -58,7 +58,7 @@ export default function Home() {
             <BugModal />
             <BugDataModal />
             <div>
-            {display().map((i, k) => i && i.length > 0 && <Row style={{marginBottom: 10}} key={`row-${k}`}>{i.map((c, ck) => <Col span={6} key={`key-${ck}`}>{c}</Col>)}<br/></Row>)}
+            {display() && display().map((i, k) => i && i.length > 0 && <Row style={{marginBottom: 10}} key={`row-${k}`}>{i.map((c, ck) => <Col span={6} key={`key-${ck}`}>{c}</Col>)}<br/></Row>)}
             </div>
         </div>
   );
