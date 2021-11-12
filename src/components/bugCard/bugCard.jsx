@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { openBugData } from "../../features/modal/bugDataModal.js";
+import { useSelector, useDispatch } from "react-redux";
 import { Card } from 'antd';
 import './bugCard.css';
 import react from '../../assets/types/react.png';
@@ -9,13 +11,18 @@ import html from '../../assets/types/html.png';
 import css from '../../assets/types/css.png';
 import other from '../../assets/types/other.png';
 
+
 const { Meta } = Card;
 
 
-export default function BugCard({ title, date, type }) {
+export default function BugCard({ data }) {
     const [thumbnail, setThumbnail] = useState();
 
+    const bugDataModal = useSelector((state) => state.bugDataModal.value);
+    const dispatch = useDispatch();
+
     useEffect(() => {
+        const type = data.type_of_error;
         console.log(type);
         if (type === "react") {
             setThumbnail(react);
@@ -37,11 +44,12 @@ export default function BugCard({ title, date, type }) {
     return (
     <div>
         <Card
+        onClick={() => dispatch(openBugData(data))}
         hoverable
         style={{ width: 275 }}
         cover={<img alt="example" src={thumbnail} />}
         >
-            <Meta title={title} description={date} />
+            <Meta title={data.title} description={data.date} />
         </Card>
     </div>
     )

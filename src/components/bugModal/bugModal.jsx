@@ -20,6 +20,7 @@ export default function BugModal() {
   const [solutionDesc, setSolutionDesc] = useState("Description of solution...");
   const [type, setType] = useState("Choose type of bug...")
   const [customType, setCustomType] = useState("");
+  const [name, setName] = useState("");
 
   const bugModal = useSelector((state) => state.bugModal.value);
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ export default function BugModal() {
         solution_url: url,
         solution_description: solutionDesc,
         type_of_error: type ? type : customType,
+        name: name,
         date: d.toDateString(),
         // project_id: selectedProject,
 
@@ -60,6 +62,7 @@ export default function BugModal() {
     setSolutionDesc("Description of solution...");
     setType("Choose type of bug...");
     setCustomType("");
+    setName("");
 
     dispatch(closeBug());
   };
@@ -123,11 +126,18 @@ export default function BugModal() {
             value={customType}
           />
         }
-        <Select style={{ width: 200 }} onChange={(updateProject)} value={selectedProject}>
+        <Select className="input" style={{ width: 200 }} onChange={(updateProject)} value={selectedProject}>
             {Object.keys(localProjects).map((keyName, i) => (
                 <Option value={keyName}>{localProjects[keyName].name}</Option>
             ))}
         </Select>
+        <Input
+          className="input name"
+          addonBefore="Full Name"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+          width="30%"
+        />
       </Modal>
     </div>
   );
