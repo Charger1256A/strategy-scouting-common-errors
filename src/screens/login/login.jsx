@@ -20,7 +20,7 @@ export default function Login({ onLogin }) {
 
     return (
         <div className="container">
-            <h1>Test</h1>
+            <h1>Login</h1>
             <Input addonBefore="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
             <Button type="primary" onClick={() => submit()}>Login</Button>
         </div>
