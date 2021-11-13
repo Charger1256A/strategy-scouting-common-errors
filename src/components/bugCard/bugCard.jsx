@@ -7,6 +7,7 @@ import react from '../../assets/types/react.png';
 import reactNative from '../../assets/types/react-native.png';
 import xcode from '../../assets/types/xcode.png';
 import javascript from '../../assets/types/javascript.png';
+import git from '../../assets/types/git.png';
 import html from '../../assets/types/html.png';
 import css from '../../assets/types/css.png';
 import other from '../../assets/types/other.png';
@@ -35,6 +36,8 @@ export default function BugCard({ data }) {
             setThumbnail(html);
         } else if (type === "CSS") {
             setThumbnail(css);
+        } else if (type === "git") {
+            setThumbnail(git);
         } else {
             setThumbnail(other);
         }

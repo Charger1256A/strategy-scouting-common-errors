@@ -112,6 +112,7 @@ export default function BugModal() {
             <Option value="react">react</Option>
             <Option value="xcode">xcode</Option>
             <Option value="javascript">javascript</Option>
+            <Option value="git">git</Option>
             <Option value="HTML">HTML</Option>
             <Option value="CSS">CSS</Option>
             <Option value="">other</Option>
